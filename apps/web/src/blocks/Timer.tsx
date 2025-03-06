@@ -6,10 +6,12 @@ import { Button } from "../components/Button";
 import { TimeInput } from "./TimeInput";
 import { useTimer } from "../hooks/useTimer";
 import { sec2time } from "../utils/time";
+import { cn } from "../utils/cn";
 
 export const Timer = () => {
   const [settingsOpen, setSettingsOpen] = useState(false);
   const settingsRef = useRef<HTMLDivElement>(null);
+  const settingsButtonRef = useRef<HTMLButtonElement>(null);
   const { time, startTime, start, stop, reset, timerActive, updateTime } =
     useTimer(3600);
 
@@ -24,7 +26,12 @@ export const Timer = () => {
 
   function handleClickOutside(event: MouseEvent) {
     const current = settingsRef.current;
-    if (current && !current.contains(event.target as Node)) {
+    const buttonCurrent = settingsButtonRef.current;
+    if (
+      current &&
+      !current.contains(event.target as Node) &&
+      !buttonCurrent?.contains(event.target as Node)
+    ) {
       setSettingsOpen(false);
     }
   }
@@ -52,17 +59,22 @@ export const Timer = () => {
   }
 
   return (
-    <div className="flex items-start gap-4">
-      <Card>
+    <div className="flex flex-col items-start gap-4 sm:flex-row">
+      <Card className="w-full sm:w-fit">
         <CardHeader className="flex items-center justify-center">
           <CardTitle>
-            <span className="m-0! font-mono text-7xl font-extralight">
+            <span
+              className={cn(
+                "m-0! font-mono text-7xl font-extralight sm:text-7xl",
+                startTime >= 3600 ? "text-5xl" : "text-7xl",
+              )}
+            >
               {getFormattedTime()}
             </span>
           </CardTitle>
         </CardHeader>
         <CardFooter className="flex items-center justify-between">
-          <div>
+          <div className="mr-20 ml-auto md:ml-1">
             {timerActive ? (
               <Button variant="primary" onClick={stop}>
                 <Pause size={16} />
@@ -81,7 +93,8 @@ export const Timer = () => {
             )}
           </div>
           <Button
-            className="mr-1"
+            ref={settingsButtonRef}
+            className="mr-auto ml-20 md:mr-1"
             variant="primary"
             onClick={handleOpenSettings}
           >

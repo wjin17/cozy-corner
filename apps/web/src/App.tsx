@@ -8,7 +8,7 @@ import { Play } from "lucide-react";
 export const App = () => {
   return (
     <div>
-      <div className="absolute top-10 left-10 flex h-[calc(100vh-5rem)] flex-col gap-8">
+      <div className="absolute top-10 left-6 flex h-[calc(100vh-5rem)] w-[calc(100%-3rem)] min-w-xs flex-col gap-8 md:left-10 md:w-[calc(100%-5rem)]">
         <Timer />
         <Todo />
         <div className="flex gap-4 text-white">

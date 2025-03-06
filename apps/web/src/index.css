@@ -4,7 +4,7 @@
 @theme {
   --color-background: #8fcb9b;
   --color-background-accent: #d2ead7;
-  --color-foreground: #666;
+  --color-foreground: #102314;
   --color-text: #000;
   --color-primary: #ac9c98;
   --color-secondary: #6c757d;
@@ -53,7 +53,6 @@ h4 {
   font-size: 1.5rem;
   font-weight: 600;
   line-height: 1.4;
-  margin-bottom: 0.75rem;
 }
 
 h5 {
