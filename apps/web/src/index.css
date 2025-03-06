@@ -1,0 +1,75 @@
+@import url("https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Mono:ital,wght@0,200..800;1,200..800&display=swap");
+@import "tailwindcss";
+
+@theme {
+  --color-background: #8fcb9b;
+  --color-background-accent: #d2ead7;
+  --color-foreground: #666;
+  --color-text: #000;
+  --color-primary: #ac9c98;
+  --color-secondary: #6c757d;
+  --color-accent: #f8f9fa;
+  --color-border: #aeaeae;
+  --color-shadow: rgba(0, 0, 0, 0.1);
+  --color-hover: rgba(0, 0, 0, 0.1);
+  --color-active: rgba(0, 0, 0, 0.1);
+  --color-disabled: #e9ecef;
+  --color-error: #dc3545;
+  --color-success: #28a745;
+  --color-warning: #ffc107;
+  --color-info: #0dcaf0;
+
+  --font-mono: "Atkinson Hyperlegible Mono", sans-serif;
+}
+
+@layer base {
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+}
+
+h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+h2 {
+  font-size: 2rem;
+  font-weight: 600;
+  line-height: 1.3;
+  margin-bottom: 0.875rem;
+}
+
+h3 {
+  font-size: 1.75rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+h4 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1.4;
+  margin-bottom: 0.75rem;
+}
+
+h5 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.4;
+  margin-bottom: 0.5rem;
+}
+
+h6 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  line-height: 1.4;
+  margin-bottom: 0.5rem;
+}
+
+button {
+  cursor: pointer;
+}
