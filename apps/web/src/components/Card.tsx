@@ -6,7 +6,7 @@ type CardProps = ComponentProps<"div">;
 export const Card: FC<CardProps> = ({ className, ref, ...props }) => (
   <div
     ref={ref}
-    className={cn("bg-background-accent text-foreground rounded-xl", className)}
+    className={cn("bg-secondary text-foreground rounded-xl", className)}
     {...props}
   />
 );

@@ -5,7 +5,7 @@ import { cn } from "../utils/cn";
 const buttonVariants = {
   primary: "bg-primary hover:brightness-95",
   secondary: "bg-secondary hover:brightness-90",
-  ghost: "bg-transparent hover:bg-neutral-300/40",
+  ghost: "bg-transparent hover:bg-background/40",
   outline: "border border-border hover:bg-neutral-300/40",
 };
 

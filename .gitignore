@@ -52,3 +52,10 @@ jest_html_reporters_*
 
 # Express
 .pid
+
+# Rollup
+dist/
+dist-ssr/
+*.local
+.rollup.cache/
+

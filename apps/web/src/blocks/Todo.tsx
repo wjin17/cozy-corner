@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Plus } from "lucide-react";
+import { Plus, Trash } from "lucide-react";
 
 import {
   Card,
@@ -62,6 +62,10 @@ export const Todo = () => {
     setNewTask("");
   }
 
+  function handleDeleteTask(id: string) {
+    setTasks((prev) => prev.filter((task) => task.id !== id));
+  }
+
   return (
     <Card
       className={cn(
@@ -79,9 +83,9 @@ export const Todo = () => {
       <CardContent className="flex-grow overflow-y-auto">
         <ul>
           {tasks.map((task) => (
-            <li key={task.id}>
+            <li className="flex justify-between" key={task.id}>
               <Button
-                className="bg-background-accent rounded-xl text-left"
+                className="rounded-xl text-left"
                 variant="ghost"
                 onClick={() => handleToggleTask(task.id)}
               >
@@ -98,6 +102,14 @@ export const Todo = () => {
                   </span>
                 </h4>
               </Button>
+              <Button
+                className="peer rounded-xl text-left"
+                variant="ghost"
+                size="icon"
+                onClick={() => handleDeleteTask(task.id)}
+              >
+                <Trash size={16} strokeWidth={1} />
+              </Button>
             </li>
           ))}
         </ul>
@@ -111,7 +123,7 @@ export const Todo = () => {
           onChange={(e) => setNewTask(e.target.value)}
         />
         <Button className="p-2" onClick={handleAddTask}>
-          <Plus size={32} />
+          <Plus size={32} strokeWidth={1} />
         </Button>
       </CardFooter>
     </Card>

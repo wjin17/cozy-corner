@@ -1,0 +1,15 @@
+{
+  "extends": "@packages/ts-config/base.json",
+  "compilerOptions": {
+    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.node.tsbuildinfo",
+    "lib": ["ES2023"],
+
+    /* Bundler mode */
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "moduleDetection": "force",
+    "noEmit": true
+  },
+  "include": ["vite.config.ts", "src/server.ts", "src/api/**/*.ts"],
+  "exclude": ["node_modules", "src/**/*.tsx"]
+}

@@ -3,12 +3,12 @@
 
 @theme {
   --color-background: #8fcb9b;
-  --color-background-accent: #d2ead7;
+  --color-background-accent: #a5d5af;
   --color-foreground: #102314;
   --color-text: #000;
   --color-primary: #ac9c98;
-  --color-secondary: #6c757d;
-  --color-accent: #f8f9fa;
+  --color-secondary: #d2ead7;
+  --color-accent: #a5d5af;
   --color-border: #aeaeae;
   --color-shadow: rgba(0, 0, 0, 0.1);
   --color-hover: rgba(0, 0, 0, 0.1);
