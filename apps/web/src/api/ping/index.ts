@@ -1,6 +1,6 @@
 import { Hono } from "hono";
 import { describeRoute } from "hono-openapi";
-import { resolver, validator as zValidator } from "hono-openapi/zod";
+import { resolver } from "hono-openapi/zod";
 import { z } from "zod";
 
 const app = new Hono().basePath("/ping");

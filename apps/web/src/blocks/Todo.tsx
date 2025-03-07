@@ -92,7 +92,7 @@ export const Todo = () => {
                 <h4>
                   <span
                     className={cn(
-                      "after:bg-foreground relative after:absolute after:top-1/2 after:-left-[5%] after:block after:h-1 after:w-0 after:transition-all after:duration-300 after:ease-in",
+                      "after:bg-foreground relative font-extralight after:absolute after:top-1/2 after:-left-[5%] after:block after:h-0.5 after:w-0 after:transition-all after:duration-300 after:ease-in",
                       task.completed
                         ? "after:w-[110%]"
                         : "hover:after:w-[110%]",
