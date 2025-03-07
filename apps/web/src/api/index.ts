@@ -7,8 +7,8 @@ import { fileURLToPath } from "url";
 import { readFile } from "node:fs/promises";
 import { Hono } from "hono";
 import { serveStatic } from "@hono/node-server/serve-static";
-import { linkDocs } from "./openapi";
-import ping from "./ping";
+import { linkDocs } from "./v1/openapi";
+import v1 from "./v1";
 
 import { Logger } from "../utils/logger";
 
@@ -16,7 +16,7 @@ const isProd = process.env["NODE_ENV"] === "production";
 const app = new Hono();
 
 // App routes
-app.route("/api/v1", ping);
+app.route("/api/v1", v1);
 linkDocs(app);
 
 const __filename = fileURLToPath(import.meta.url);
@@ -49,5 +49,7 @@ if (isProd) {
 
 // This catch-all route handles application routes after static files are checked
 app.get("/*", (c) => c.html(html));
+
+export type AppType = typeof v1;
 
 export default app;

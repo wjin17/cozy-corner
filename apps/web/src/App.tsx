@@ -1,4 +1,5 @@
 import { SiDiscord, SiInstagram, SiX } from "@icons-pack/react-simple-icons";
+
 import { Button } from "./components/Button";
 import MusicPlayer from "./blocks/MusicPlayer";
 

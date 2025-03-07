@@ -3,14 +3,12 @@ import { describeRoute } from "hono-openapi";
 import { resolver } from "hono-openapi/zod";
 import { z } from "zod";
 
-const app = new Hono().basePath("/ping");
-
 const responseSchema = z.object({
   message: z.string(),
   timestamp: z.number(),
 });
 
-app.get(
+const route = new Hono().get(
   "/",
   describeRoute({
     description: "Return a pong",
@@ -28,4 +26,4 @@ app.get(
   (c) => c.json({ message: "pong", timestamp: Date.now() }),
 );
 
-export default app;
+export default route;

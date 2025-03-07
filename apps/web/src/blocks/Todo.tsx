@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Plus, Trash } from "lucide-react";
+import { SortableList } from "../components/SortableList";
 
 import {
   Card,
@@ -13,6 +14,7 @@ import { Button } from "../components/Button";
 
 import { cn } from "../utils/cn";
 import { smolid } from "../utils/smolid";
+import { useForm } from "../hooks/useForm";
 
 type Task = {
   id: string;
@@ -20,31 +22,56 @@ type Task = {
   completed: boolean;
 };
 
+const ExampleTasks: Task[] = [
+  {
+    id: smolid(),
+    title: "Eat pizza",
+    completed: true,
+  },
+  {
+    id: smolid(),
+    title: "Clean room",
+    completed: false,
+  },
+  {
+    id: smolid(),
+    title: "Buy groceries",
+    completed: false,
+  },
+  {
+    id: smolid(),
+    title: "Walk dog",
+    completed: true,
+  },
+];
+
 export const Todo = () => {
-  const [newTask, setNewTask] = useState("");
   const [open, setOpen] = useState(false);
-  const [tasks, setTasks] = useState<Task[]>([
-    {
-      id: smolid(),
-      title: "Eat pizza",
-      completed: true,
+  const [tasks, setTasks] = useState<Task[]>(ExampleTasks);
+  const scrollRef = useRef<HTMLDivElement | null>(null);
+
+  const { registerField, registerForm } = useForm({
+    initialValues: {
+      newTask: "",
     },
-    {
-      id: smolid(),
-      title: "Clean room",
-      completed: false,
+    onSubmit: ({ newTask }) => {
+      if (newTask.trim() !== "") {
+        setTasks((prev) => [
+          ...prev,
+          { id: smolid(), title: newTask, completed: false },
+        ]);
+      }
     },
-    {
-      id: smolid(),
-      title: "Buy groceries",
-      completed: false,
-    },
-    {
-      id: smolid(),
-      title: "Walk dog",
-      completed: true,
-    },
-  ]);
+  });
+
+  useEffect(() => {
+    if (scrollRef.current && open) {
+      scrollRef.current.scrollTo({
+        top: scrollRef.current.scrollHeight,
+        behavior: "smooth",
+      });
+    }
+  }, [tasks, open]);
 
   function handleToggleTask(id: string) {
     setTasks((prev) =>
@@ -52,14 +79,6 @@ export const Todo = () => {
         id === task.id ? { ...task, completed: !task.completed } : task,
       ),
     );
-  }
-
-  function handleAddTask() {
-    setTasks((prev) => [
-      ...prev,
-      { id: smolid(), title: newTask, completed: false },
-    ]);
-    setNewTask("");
   }
 
   function handleDeleteTask(id: string) {
@@ -73,59 +92,60 @@ export const Todo = () => {
         open ? "max-h-full" : "max-h-22",
       )}
     >
-      <button onClick={() => setOpen((prev) => !prev)} className="w-full">
+      <button
+        onClick={() => setOpen((prev) => !prev)}
+        className="w-full cursor-pointer"
+      >
         <CardHeader>
           <CardTitle>
             <h3 className="text-left">Tasks</h3>
           </CardTitle>
         </CardHeader>
       </button>
-      <CardContent className="flex-grow overflow-y-auto">
-        <ul>
-          {tasks.map((task) => (
-            <li className="flex justify-between" key={task.id}>
+      <CardContent ref={scrollRef} className="flex-grow overflow-y-auto">
+        <SortableList items={[...tasks]} onItemsChange={setTasks}>
+          {({ id, title, completed }) => (
+            <div className="flex w-full items-center justify-between">
               <Button
                 className="rounded-xl text-left"
                 variant="ghost"
-                onClick={() => handleToggleTask(task.id)}
+                onClick={() => handleToggleTask(id)}
               >
                 <h4>
                   <span
                     className={cn(
                       "after:bg-foreground relative font-extralight after:absolute after:top-1/2 after:-left-[5%] after:block after:h-0.5 after:w-0 after:transition-all after:duration-300 after:ease-in",
-                      task.completed
-                        ? "after:w-[110%]"
-                        : "hover:after:w-[110%]",
+                      completed ? "after:w-[110%]" : "hover:after:w-[110%]",
                     )}
                   >
-                    {task.title}
+                    {title}
                   </span>
                 </h4>
               </Button>
               <Button
-                className="peer rounded-xl text-left"
+                className="rounded-xl text-left"
                 variant="ghost"
                 size="icon"
-                onClick={() => handleDeleteTask(task.id)}
+                onClick={() => handleDeleteTask(id)}
               >
                 <Trash size={16} strokeWidth={1} />
               </Button>
-            </li>
-          ))}
-        </ul>
+            </div>
+          )}
+        </SortableList>
       </CardContent>
-      <CardFooter className="mt-2 flex justify-end">
-        <Input
-          className="w-[90%]"
-          name="newTask"
-          label="New task"
-          value={newTask}
-          onChange={(e) => setNewTask(e.target.value)}
-        />
-        <Button className="p-2" onClick={handleAddTask}>
-          <Plus size={32} strokeWidth={1} />
-        </Button>
-      </CardFooter>
+      <form {...registerForm()}>
+        <CardFooter className="mt-2 flex justify-end">
+          <Input
+            className="w-[90%]"
+            label="New task"
+            {...registerField("newTask")}
+          />
+          <Button className="p-2">
+            <Plus size={32} strokeWidth={1} />
+          </Button>
+        </CardFooter>
+      </form>
     </Card>
   );
 };
