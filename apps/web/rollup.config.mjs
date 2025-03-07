@@ -14,7 +14,7 @@ export default {
     preserveModulesRoot: "src",
   },
   external(id) {
-    return id.includes(sep + "node_modules" + sep);
+    return builtinModules.includes(id) || /^(react|react-dom)($|\/)/.test(id);
   },
   plugins: [
     typescript({

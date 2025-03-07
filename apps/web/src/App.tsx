@@ -1,9 +1,9 @@
 import { SiDiscord, SiInstagram, SiX } from "@icons-pack/react-simple-icons";
 import { Button } from "./components/Button";
+import MusicPlayer from "./blocks/MusicPlayer";
 
 import { Timer } from "./blocks/Timer";
 import { Todo } from "./blocks/Todo";
-import { Play } from "lucide-react";
 
 export const App = () => {
   return (
@@ -29,19 +29,7 @@ export const App = () => {
           </a>
         </div>
       </div>
-      <div className="absolute right-10 bottom-10">
-        <Button
-          variant="primary"
-          className="relative flex h-14 flex-col items-center p-3"
-        >
-          <div className="flex items-center gap-2">
-            <Play />
-            SPOTIFY GOES HERE
-          </div>
-          <div className="absolute bottom-2 left-4 h-1 w-3/5 bg-white" />
-          <div className="absolute bottom-0.5 left-34 h-4 w-4 rounded-full bg-white" />
-        </Button>
-      </div>
+      <MusicPlayer />
     </div>
   );
 };

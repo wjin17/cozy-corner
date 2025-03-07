@@ -4,13 +4,20 @@
 
 import path from "path";
 import { fileURLToPath } from "url";
-import { Hono } from "hono";
 import { readFile } from "node:fs/promises";
+import { Hono } from "hono";
 import { serveStatic } from "@hono/node-server/serve-static";
+import { linkDocs } from "./openapi";
+import ping from "./ping";
+
 import { Logger } from "../utils/logger";
 
 const isProd = process.env["NODE_ENV"] === "production";
 const app = new Hono();
+
+// App routes
+app.route("/api/v1", ping);
+linkDocs(app);
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);

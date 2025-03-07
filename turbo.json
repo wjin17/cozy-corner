@@ -3,7 +3,7 @@
   "tasks": {
     "build": {
       "dependsOn": ["^build"],
-      "inputs": ["$TURBO_DEFAULT$", ".env*", "src/**/*.tsx"],
+      "inputs": ["$TURBO_DEFAULT$", ".env", "src/**/*.tsx", "src/**/*.ts"],
       "outputs": ["dist/**"]
     },
     "lint": {},
