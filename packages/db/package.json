@@ -1,28 +1,36 @@
 {
   "name": "@packages/db",
   "version": "1.0.0",
-  "main": "dist/index.js",
+  "exports": {
+    "./schema": {
+      "types": "./src/schema.ts",
+      "default": "./dist/schema.js"
+    },
+    "./db": {
+      "types": "./src/db.ts",
+      "default": "./dist/db.js"
+    }
+  },
   "scripts": {
     "dev": "tsc --watch",
     "build": "tsc",
     "generate": "drizzle-kit generate",
-    "migrate": "drizzle-kit migrate"
+    "migrate": "drizzle-kit migrate",
+    "clean": "rm -rf dist"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
   "devDependencies": {
+    "@packages/eslint-config": "*",
     "drizzle-kit": "^0.30.5",
+    "eslint": "^9.22.0",
     "typescript": "^5.8.2"
   },
   "dependencies": {
     "@libsql/client": "^0.14.0",
     "dotenv": "^16.4.7",
     "drizzle-orm": "^0.40.0"
-  },
-  "exports": {
-    "types": "./src/index.ts",
-    "default": "./dist/index.js"
   }
 }

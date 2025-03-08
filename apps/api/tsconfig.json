@@ -10,6 +10,6 @@
     "moduleDetection": "force",
     "noEmit": true
   },
-  "include": ["vite.config.ts", "src/server.ts", "src/api/**/*.ts"],
-  "exclude": ["node_modules", "src/**/*.tsx"]
+  "include": ["src/**/*.ts"],
+  "exclude": ["node_modules"]
 }

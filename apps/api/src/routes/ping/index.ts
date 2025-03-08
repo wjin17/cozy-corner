@@ -23,7 +23,7 @@ const route = new Hono().get(
       },
     },
   }),
-  (c) => c.json({ message: "pong", timestamp: Date.now() }),
+  (c) => c.json({ message: "pong", timestamp: Date.now() })
 );
 
 export default route;

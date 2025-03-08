@@ -1,8 +1,8 @@
 import { serve } from "@hono/node-server";
 
-import app from "./api/index";
+import { routes } from "./routes/index";
 
-import { Logger } from "./utils/logger";
+import { Logger } from "@packages/lib/common/logger";
 
 const port = process.env.PORT || 3000;
 
@@ -10,10 +10,10 @@ const port = process.env.PORT || 3000;
 Logger.info(`NODE_ENV: ${process.env.NODE_ENV}`);
 serve(
   {
-    fetch: app.fetch,
+    fetch: routes.fetch,
     port: Number(port),
   },
   (info) => {
     Logger.info(`Server started on http://localhost:${info.port}`);
-  },
+  }
 );

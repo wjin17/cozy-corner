@@ -5,7 +5,10 @@ import devServer, { defaultOptions } from "@hono/vite-dev-server";
 
 // https://vite.dev/config/
 export default defineConfig({
-  build: { outDir: "./dist/web" },
+  build: { outDir: "./dist" },
+  server: {
+    port: 3000,
+  },
   plugins: [
     react(),
     tailwindcss(),

@@ -1,4 +1,4 @@
-import { useState, type ReactNode, type DragEvent } from "react";
+import { useState, type ReactNode } from "react";
 import { GripVertical } from "lucide-react";
 import { Lenny } from "./Lenny";
 
@@ -20,14 +20,14 @@ export const SortableList = <T extends { id: string }>({
   itemClassName,
   listClassName,
 }: SortableListProps<T>) => {
-  const [interalList, setInteralList] = useState<T[]>(items);
+  //   const [interalList, setInteralList] = useState<T[]>(items);
   const [isDragging, setIsDragging] = useState<string | null>(null);
 
-  function handleDragStart(id: string) {
-    return (_e: DragEvent) => {
-      setIsDragging(id);
-    };
-  }
+  //   function handleDragStart(id: string) {
+  //     return (_e: DragEvent) => {
+  //       setIsDragging(id);
+  //     };
+  //   }
 
   return (
     <ul className={cn("list-none", listClassName)}>
