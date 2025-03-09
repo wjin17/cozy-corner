@@ -1,4 +1,4 @@
-import { useState, type ChangeEvent, type FormEvent } from "react";
+import { type ChangeEvent, type FormEvent, useState } from "react";
 
 type FormOptions = {
   /** Default true */
@@ -34,20 +34,21 @@ export const useForm = <T extends object>({
   function registerField<K extends Path<T>>(
     field: K,
   ): {
-    id: string;
-    name: string;
-    value: NestedValue<T, K>;
-    onChange: (e: ChangeEvent<HTMLInputElement>) => void;
-  } {
+      id: string;
+      name: string;
+      value: NestedValue<T, K>;
+      onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+    } {
     const path = field.split(".");
     const leaf = path.at(-1);
     function handleChange(e: ChangeEvent<HTMLInputElement>) {
       setValues((prev) => {
         if (leaf) {
-          let root = { ...prev };
+          const root = { ...prev };
           let current: any = root;
           for (const p of path.slice(0, -1)) {
-            if (!current[p]) current[p] = {};
+            if (!current[p])
+              current[p] = {};
             current = current[p];
           }
           current[leaf] = e.target.value;

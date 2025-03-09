@@ -1,17 +1,20 @@
 import { serve } from "@hono/node-server";
+import { env } from "@packages/env";
+import { Logger } from "@packages/lib/common/logger";
+import { Hono } from "hono";
 
 import { routes } from "./routes/index";
 
-import { Logger } from "@packages/lib/common/logger";
+const app = new Hono();
 
-const port = process.env.PORT || 3000;
+app.route("/api", routes);
 
 // Start the server
-Logger.info(`NODE_ENV: ${process.env.NODE_ENV}`);
+Logger.info(`NODE_ENV: ${env.NODE_ENV}`);
 serve(
   {
-    fetch: routes.fetch,
-    port: Number(port),
+    fetch: app.fetch,
+    port: Number(env.PORT),
   },
   (info) => {
     Logger.info(`Server started on http://localhost:${info.port}`);

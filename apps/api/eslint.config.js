@@ -7,13 +7,6 @@ export default createConfig(
   {
     rules: {
       "antfu/top-level-function": "off",
-      "unicorn/filename-case": [
-        "error",
-        {
-          case: "kebabCase",
-          ignore: ["README.md", "~__root.tsx"],
-        },
-      ],
     },
   }
 );

@@ -1,8 +1,7 @@
-import { useState, type ReactNode } from "react";
-import { GripVertical } from "lucide-react";
-import { Lenny } from "./Lenny";
+import { type ReactNode, useState } from "react";
 
 import { cn } from "../utils/cn";
+import { Lenny } from "./Lenny";
 
 type SortableListProps<T extends { id: string }> = {
   gripper?: ReactNode;
@@ -16,7 +15,7 @@ type SortableListProps<T extends { id: string }> = {
 export const SortableList = <T extends { id: string }>({
   items,
   children,
-  gripper = <GripVertical size={24} />,
+  gripper,
   itemClassName,
   listClassName,
 }: SortableListProps<T>) => {
@@ -41,6 +40,7 @@ export const SortableList = <T extends { id: string }>({
             )}
           >
             <button
+              type="button"
               onClick={() => setIsDragging((prev) => (prev ? null : item.id))}
               className="my-auto cursor-grab active:cursor-grabbing"
             >

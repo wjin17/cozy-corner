@@ -1,8 +1,12 @@
 {
   "name": "@apps/api",
-  "private": true,
   "type": "module",
   "version": "0.0.0",
+  "private": true,
+  "description": "",
+  "author": "",
+  "license": "ISC",
+  "keywords": [],
   "exports": {
     "./routes": "./src/routes/index.ts",
     "./dev": "./src/dev/index.ts"
@@ -11,30 +15,28 @@
     "build": "rollup -c",
     "lint": "eslint .",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "clean": "rm -rf dist && rm -rf .rollup.cache && rm -rf node_modules"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
-  "devDependencies": {
-    "@packages/eslint-config": "*",
-    "@packages/ts-config": "*",
-    "@rollup/plugin-commonjs": "^28.0.3",
-    "@rollup/plugin-node-resolve": "^16.0.0",
-    "@rollup/plugin-typescript": "^12.1.2",
-    "@scalar/hono-api-reference": "^0.5.183",
-    "rollup": "^4.34.9"
+    "clean": "rm -rf dist && rm -rf .rollup.cache && rm -rf node_modules && rm -rf .turbo"
   },
   "dependencies": {
     "@hono/node-server": "^1.13.8",
     "@hono/zod-validator": "^0.4.3",
-    "@packages/db": "^1.0.0",
-    "@packages/lib": "^0.0.1",
-    "eslint": "^9.22.0",
+    "@packages/db": "*",
+    "@packages/env": "*",
+    "@packages/lib": "*",
     "hono": "^4.7.4",
     "hono-openapi": "^0.4.6",
     "zod": "^3.24.2",
     "zod-openapi": "^4.2.3"
+  },
+  "devDependencies": {
+    "@packages/eslint-config": "*",
+    "@packages/ts-config": "*",
+    "@rollup/plugin-commonjs": "^28.0.3",
+    "@rollup/plugin-json": "^6.1.0",
+    "@rollup/plugin-node-resolve": "^16.0.0",
+    "@rollup/plugin-typescript": "^12.1.2",
+    "@scalar/hono-api-reference": "^0.5.183",
+    "eslint": "^9.22.0",
+    "rollup": "^4.34.9"
   }
 }

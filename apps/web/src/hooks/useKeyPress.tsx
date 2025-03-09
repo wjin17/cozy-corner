@@ -26,7 +26,7 @@ export const useKeyPress = (
       window.removeEventListener("keydown", handleKeyPress);
       window.removeEventListener("keyup", handleKeyUp);
     };
-  }, [key]);
+  }, [key, cb]);
 
   return isPressed;
 };

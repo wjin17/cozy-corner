@@ -1,12 +1,11 @@
 import { Clock2, Hourglass } from "lucide-react";
 
-import { Card, CardHeader } from "../../components/Card";
 import { Button } from "../../components/Button";
+import { Card, CardHeader } from "../../components/Card";
+import { SettingsActions as S, useSettings } from "../../hooks/useSettings";
+import { cn } from "../../utils/cn";
 import { ClockConfig } from "./ClockConfig";
 import { TimerConfig } from "./TimerConfig";
-
-import { useSettings, SettingsActions } from "../../hooks/useSettings";
-import { cn } from "../../utils/cn";
 
 type ConfigContainerProps = {
   settingsRef: React.RefObject<HTMLDivElement | null>;
@@ -22,25 +21,21 @@ export const ConfigContainer = ({ settingsRef }: ConfigContainerProps) => {
           <div className="flex gap-1">
             <Button
               className={cn(
-                settings.mode === "clock" &&
-                  "bg-background-accent text-secondary-foreground",
+                settings.mode === "clock"
+                  && "bg-background-accent text-secondary-foreground",
               )}
               variant="primary"
-              onClick={() =>
-                dispatch({ type: SettingsActions.SET_MODE, payload: "clock" })
-              }
+              onClick={() => dispatch({ type: S.SET_MODE, payload: "clock" })}
             >
               <Clock2 size={16} />
             </Button>
             <Button
               className={cn(
-                settings.mode === "timer" &&
-                  "bg-background-accent text-secondary-foreground",
+                settings.mode === "timer"
+                  && "bg-background-accent text-secondary-foreground",
               )}
               variant="primary"
-              onClick={() =>
-                dispatch({ type: SettingsActions.SET_MODE, payload: "timer" })
-              }
+              onClick={() => dispatch({ type: S.SET_MODE, payload: "timer" })}
             >
               <Hourglass size={16} />
             </Button>

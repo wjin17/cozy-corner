@@ -1,5 +1,6 @@
 {
   "$schema": "https://json.schemastore.org/prettierrc",
+  "experimentalOperatorPosition": "start",
   "plugins": ["prettier-plugin-tailwindcss"],
   "tailwindFunctions": ["clsx", "twMerge"],
   "overrides": [

@@ -1,8 +1,8 @@
-import { Hono } from "hono";
-import { openAPISpecs } from "hono-openapi";
-import { apiReference } from "@scalar/hono-api-reference";
+import type { Hono } from "hono";
 
-const port = process.env.PORT || 5173;
+// import { env } from "@packages/env";
+import { apiReference } from "@scalar/hono-api-reference";
+import { openAPISpecs } from "hono-openapi";
 
 /**
  * Automatically generates docs for routes
@@ -22,7 +22,10 @@ export function linkDocs(pathPrefix: string, routes: Hono) {
             description: "Cozy Corner API",
           },
           servers: [
-            { url: `http://localhost:${port}`, description: "Local Server" },
+            {
+              url: `http://localhost:${3000}`,
+              description: "Local Server",
+            },
           ],
         },
       })

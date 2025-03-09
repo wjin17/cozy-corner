@@ -1,20 +1,19 @@
-import { useState, useRef, useEffect } from "react";
 import { Plus, Trash } from "lucide-react";
-import { SortableList } from "../components/SortableList";
+import { useEffect, useRef, useState } from "react";
 
+import { Button } from "../components/Button";
 import {
   Card,
-  CardHeader,
-  CardTitle,
   CardContent,
   CardFooter,
+  CardHeader,
+  CardTitle,
 } from "../components/Card";
 import { Input } from "../components/Input";
-import { Button } from "../components/Button";
-
+import { SortableList } from "../components/SortableList";
+import { useForm } from "../hooks/useForm";
 import { cn } from "../utils/cn";
 import { smolid } from "../utils/smolid";
-import { useForm } from "../hooks/useForm";
 
 type Task = {
   id: string;
@@ -56,7 +55,7 @@ export const Todo = () => {
     },
     onSubmit: ({ newTask }) => {
       if (newTask.trim() !== "") {
-        setTasks((prev) => [
+        setTasks(prev => [
           ...prev,
           { id: smolid(), title: newTask, completed: false },
         ]);
@@ -74,15 +73,15 @@ export const Todo = () => {
   }, [tasks, open]);
 
   function handleToggleTask(id: string) {
-    setTasks((prev) =>
-      prev.map((task) =>
+    setTasks(prev =>
+      prev.map(task =>
         id === task.id ? { ...task, completed: !task.completed } : task,
       ),
     );
   }
 
   function handleDeleteTask(id: string) {
-    setTasks((prev) => prev.filter((task) => task.id !== id));
+    setTasks(prev => prev.filter(task => task.id !== id));
   }
 
   return (
@@ -93,7 +92,8 @@ export const Todo = () => {
       )}
     >
       <button
-        onClick={() => setOpen((prev) => !prev)}
+        type="button"
+        onClick={() => setOpen(prev => !prev)}
         className="w-full cursor-pointer"
       >
         <CardHeader>

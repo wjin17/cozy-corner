@@ -13,8 +13,8 @@ export const ClockConfig = () => {
           variant="primary"
           onClick={() => dispatch({ type: S.SET_CLOCK_FORMAT, payload: "12h" })}
           className={cn(
-            settings.clock.format === "12h" &&
-              "bg-background-accent text-secondary-foreground",
+            settings.clock.format === "12h"
+              && "bg-background-accent text-secondary-foreground",
           )}
         >
           12h
@@ -22,8 +22,8 @@ export const ClockConfig = () => {
         <Button
           variant="primary"
           className={cn(
-            settings.clock.format === "24h" &&
-              "bg-background-accent text-secondary-foreground",
+            settings.clock.format === "24h"
+              && "bg-background-accent text-secondary-foreground",
           )}
           onClick={() => dispatch({ type: S.SET_CLOCK_FORMAT, payload: "24h" })}
         >
@@ -36,8 +36,8 @@ export const ClockConfig = () => {
           variant="primary"
           onClick={() => dispatch({ type: S.SET_SHOW_SECONDS, payload: false })}
           className={cn(
-            !settings.clock.showSeconds &&
-              "bg-background-accent text-secondary-foreground",
+            !settings.clock.showSeconds
+              && "bg-background-accent text-secondary-foreground",
           )}
         >
           HH:MM
@@ -45,8 +45,8 @@ export const ClockConfig = () => {
         <Button
           variant="primary"
           className={cn(
-            settings.clock.showSeconds &&
-              "bg-background-accent text-secondary-foreground",
+            settings.clock.showSeconds
+              && "bg-background-accent text-secondary-foreground",
           )}
           onClick={() => dispatch({ type: S.SET_SHOW_SECONDS, payload: true })}
         >

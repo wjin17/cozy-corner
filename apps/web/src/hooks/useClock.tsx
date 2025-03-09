@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
+
 import { time2sec } from "../utils/time";
 
 function getCurrentTime() {

@@ -10,14 +10,14 @@
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "moduleResolution": "node",
+    "moduleResolution": "nodenext",
     "baseUrl": ".",
     "incremental": true,
     "noUncheckedIndexedAccess": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-    "noUncheckedSideEffectImports": true,
+    "noUncheckedSideEffectImports": true
   },
   "exclude": ["node_modules", "dist"]
 }

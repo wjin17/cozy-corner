@@ -1,11 +1,15 @@
+/* eslint-disable react/no-unstable-context-value */
 import {
   createContext,
-  useContext,
-  useState,
-  useRef,
   type FC,
   type PropsWithChildren,
+  useCallback,
+  useContext,
+  useMemo,
+  useRef,
+  useState,
 } from "react";
+
 import { sec2time, time2sec } from "../utils/time";
 
 type Timer = {
@@ -61,13 +65,12 @@ export const TimerProvider: FC<TimerProviderProps> = ({
   const [timerActive, setTimerActive] = useState(false);
   const timerRef = useRef<number | undefined>(undefined);
 
-  function updateTime(time: Time) {
-    stop();
-    setStartTime(time2sec(time));
-    setActiveTimer(time2sec(time));
-  }
+  const stop = useCallback(() => {
+    setTimerActive(false);
+    window.clearInterval(timerRef.current);
+  }, []);
 
-  function start() {
+  const start = useCallback(() => {
     setTimerActive(true);
     timerRef.current = window.setInterval(
       () =>
@@ -81,40 +84,50 @@ export const TimerProvider: FC<TimerProviderProps> = ({
         }),
       1000,
     );
-  }
+  }, [stop]);
 
-  function stop() {
-    setTimerActive(false);
-    window.clearInterval(timerRef.current);
-  }
-
-  function reset() {
+  const reset = useCallback(() => {
     stop();
     setActiveTimer(startTime);
-  }
+  }, [stop, startTime]);
 
-  const timer: Timer = {
-    current: {
-      s: activeTimer,
-      components: sec2time(activeTimer),
+  const updateTime = useCallback(
+    (time: Time) => {
+      stop();
+      setStartTime(time2sec(time));
+      setActiveTimer(time2sec(time));
     },
-    start: {
-      s: startTime,
-      components: sec2time(startTime),
-    },
-    active: timerActive,
-  };
+    [stop],
+  );
 
-  const controls: TimerControls = {
-    start,
-    stop,
-    reset,
-    updateTime,
-  };
+  const timerContextValue = useMemo<Timer>(
+    () => ({
+      current: {
+        s: activeTimer,
+        components: sec2time(activeTimer),
+      },
+      start: {
+        s: startTime,
+        components: sec2time(startTime),
+      },
+      active: timerActive,
+    }),
+    [activeTimer, startTime, timerActive],
+  );
+  const controlsContextValue = useMemo<TimerControls>(
+    () => ({
+      start,
+      stop,
+      reset,
+      updateTime,
+    }),
+    [start, stop, reset, updateTime],
+  );
+
   return (
-    <TimerContext.Provider value={[timer, controls]}>
+    <TimerContext value={[timerContextValue, controlsContextValue]}>
       {children}
-    </TimerContext.Provider>
+    </TimerContext>
   );
 };
 

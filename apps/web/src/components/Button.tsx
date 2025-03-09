@@ -1,4 +1,4 @@
-import type { FC, ComponentProps } from "react";
+import type { ComponentProps, FC } from "react";
 
 import { cn } from "../utils/cn";
 
@@ -35,6 +35,7 @@ export const Button: FC<ButtonProps> = ({
       buttonSizes[size],
       className,
     )}
+    type="button"
     {...props}
   />
 );

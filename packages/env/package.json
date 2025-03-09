@@ -1,0 +1,25 @@
+{
+  "name": "@packages/env",
+  "type": "module",
+  "private": true,
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "typecheck": "tsc --noEmit",
+    "clean": "rm -rf dist && rm -f tsconfig.tsbuildinfo && rm -rf .turbo"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "zod": "^3.24.2"
+  },
+  "devDependencies": {
+    "@packages/eslint-config": "*",
+    "@packages/lib": "*",
+    "@packages/ts-config": "*",
+    "eslint": "^9.22.0",
+    "typescript": "latest"
+  }
+}

@@ -1,12 +1,8 @@
 export class Logger {
-  /** Log a debug message */
-  public static debug(message: string) {
-    console.debug(`[DEBUG] ${message}`);
-  }
-
   /** Log an info message */
   public static info(message: string) {
-    console.info(`\x1b[32m[INFO] ${message}\x1b[0m`);
+    // eslint-disable-next-line no-console
+    console.log(`\x1b[32m[INFO] ${message}\x1b[0m`);
   }
 
   /** Log a warning message */

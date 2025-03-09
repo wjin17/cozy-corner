@@ -1,11 +1,11 @@
-import { type FC } from "react";
-import { Play, Pause, RotateCcw, Settings2 } from "lucide-react";
+import type { FC } from "react";
 
-import { Card, CardHeader, CardTitle, CardFooter } from "../components/Card";
+import { Pause, Play, RotateCcw, Settings2 } from "lucide-react";
+
 import { Button } from "../components/Button";
-import { useTimer } from "../hooks/useTimer";
-
+import { Card, CardFooter, CardHeader, CardTitle } from "../components/Card";
 import { DigitalTime } from "../components/DigitalTime";
+import { useTimer } from "../hooks/useTimer";
 
 type TimerProps = {
   onOpenSettings: () => void;
@@ -31,22 +31,24 @@ export const Timer: FC<TimerProps> = ({
       </CardHeader>
       <CardFooter className="flex items-center justify-between">
         <div>
-          {timer.active ? (
-            <Button variant="primary" onClick={controls.stop}>
-              <Pause size={16} />
-            </Button>
-          ) : (
-            <div className="flex gap-1">
-              <Button variant="primary" onClick={controls.start}>
-                <Play size={16} />
-              </Button>
-              {timer.current.s !== timer.start.s && (
-                <Button variant="primary" onClick={controls.reset}>
-                  <RotateCcw size={16} />
+          {timer.active
+            ? (
+                <Button variant="primary" onClick={controls.stop}>
+                  <Pause size={16} />
                 </Button>
+              )
+            : (
+                <div className="flex gap-1">
+                  <Button variant="primary" onClick={controls.start}>
+                    <Play size={16} />
+                  </Button>
+                  {timer.current.s !== timer.start.s && (
+                    <Button variant="primary" onClick={controls.reset}>
+                      <RotateCcw size={16} />
+                    </Button>
+                  )}
+                </div>
               )}
-            </div>
-          )}
         </div>
         <Button
           ref={settingsButtonRef}

@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
+
 import { useMouse } from "../hooks/useMouse";
 
 export const Lenny = () => {
@@ -8,10 +9,14 @@ export const Lenny = () => {
   const [offsetY, setOffsetY] = useState(0);
 
   useEffect(() => {
-    if (x > (window.innerWidth / 4) * 3) setOffsetX(-260);
-    if (x < window.innerWidth / 4) setOffsetX(30);
-    if (y > (window.innerHeight / 4) * 3) setOffsetY(-100);
-    if (y < window.innerHeight / 4) setOffsetY(40);
+    if (x > (window.innerWidth / 4) * 3)
+      setOffsetX(-260);
+    if (x < window.innerWidth / 4)
+      setOffsetX(30);
+    if (y > (window.innerHeight / 4) * 3)
+      setOffsetY(-100);
+    if (y < window.innerHeight / 4)
+      setOffsetY(40);
   }, [x, y]);
 
   return (

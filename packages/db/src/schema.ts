@@ -9,5 +9,7 @@ export const users = table(
     lastName: t.text("last_name"),
     email: t.text().notNull(),
   },
-  (table) => [t.uniqueIndex("email_idx").on(table.email)]
+  (table) => {
+    return [t.uniqueIndex("email_idx").on(table.email)];
+  }
 );

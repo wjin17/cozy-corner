@@ -1,12 +1,11 @@
-import { useState, useRef, useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 
-import { ConfigContainer } from "./TimeWidgetConfig/ConfigContainer";
-import { Clock } from "./Clock";
-import { Timer } from "./Timer";
 import { useSettings } from "../hooks/useSettings";
 import { TimerProvider } from "../hooks/useTimer";
-
 import { cn } from "../utils/cn";
+import { Clock } from "./Clock";
+import { Timer } from "./Timer";
+import { ConfigContainer } from "./TimeWidgetConfig/ConfigContainer";
 
 export const TimeWidget = () => {
   const [settingsOpen, setSettingsOpen] = useState(false);
@@ -27,9 +26,9 @@ export const TimeWidget = () => {
     const current = settingsRef.current;
     const buttonCurrent = settingsButtonRef.current;
     if (
-      current &&
-      !current.contains(event.target as Node) &&
-      !buttonCurrent?.contains(event.target as Node)
+      current
+      && !current.contains(event.target as Node)
+      && !buttonCurrent?.contains(event.target as Node)
     ) {
       setSettingsOpen(false);
     }
@@ -46,17 +45,19 @@ export const TimeWidget = () => {
           "flex flex-col items-start justify-start gap-2 sm:flex-row",
         )}
       >
-        {settings.mode === "clock" ? (
-          <Clock
-            onOpenSettings={handleOpenSettings}
-            settingsButtonRef={settingsButtonRef}
-          />
-        ) : (
-          <Timer
-            onOpenSettings={handleOpenSettings}
-            settingsButtonRef={settingsButtonRef}
-          />
-        )}
+        {settings.mode === "clock"
+          ? (
+              <Clock
+                onOpenSettings={handleOpenSettings}
+                settingsButtonRef={settingsButtonRef}
+              />
+            )
+          : (
+              <Timer
+                onOpenSettings={handleOpenSettings}
+                settingsButtonRef={settingsButtonRef}
+              />
+            )}
         {settingsOpen && <ConfigContainer settingsRef={settingsRef} />}
       </div>
     </TimerProvider>

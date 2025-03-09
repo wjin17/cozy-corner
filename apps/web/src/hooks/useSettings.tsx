@@ -1,9 +1,10 @@
 import {
-  useContext,
-  useReducer,
   createContext,
   type Dispatch,
   type ReactNode,
+  useContext,
+  useMemo,
+  useReducer,
 } from "react";
 
 type Settings = {
@@ -41,7 +42,6 @@ type SetShowSecondsAction = {
 type Action = SetModeAction | SetClockFormatAction | SetShowSecondsAction;
 
 function reducer(state: Settings, action: Action) {
-  console.log("reducer", state, action);
   switch (action.type) {
     case SettingsActions.SET_MODE:
       return { ...state, mode: action.payload };
@@ -74,13 +74,14 @@ const SettingsContext = createContext<[Settings, Dispatch<Action>]>([
 ]);
 
 const SettingsProvider = ({ children }: { children: ReactNode }) => {
-  const [state, dispatch] = useReducer(reducer, defaultSettings);
+  const [settings, dispatch] = useReducer(reducer, defaultSettings);
 
-  return (
-    <SettingsContext.Provider value={[state, dispatch]}>
-      {children}
-    </SettingsContext.Provider>
+  const contextValue = useMemo<[Settings, Dispatch<Action>]>(
+    () => [settings, dispatch],
+    [settings, dispatch],
   );
+
+  return <SettingsContext value={contextValue}>{children}</SettingsContext>;
 };
 
 const useSettings = () => {

@@ -1,4 +1,4 @@
-import { time2sec, sec2time, formatTimer } from "./time";
+import { formatTimer, sec2time, time2sec } from "./time";
 
 describe("time2sec", () => {
   it("should convert time to seconds", () => {

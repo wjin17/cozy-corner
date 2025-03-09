@@ -1,6 +1,7 @@
-import { FC } from "react";
-import { formatTime, formatTimer } from "../utils/time";
+import type { FC } from "react";
+
 import { cn } from "../utils/cn";
+import { formatTime, formatTimer } from "../utils/time";
 
 type DigitalClockProps = {
   mode: "clock";

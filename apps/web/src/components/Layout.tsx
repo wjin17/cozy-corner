@@ -1,4 +1,5 @@
-import { type FC, PropsWithChildren } from "react";
+import type { FC, PropsWithChildren } from "react";
+
 import { SettingsProvider } from "../hooks/useSettings";
 
 export const Layout: FC<PropsWithChildren> = ({ children }) => {

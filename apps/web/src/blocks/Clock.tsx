@@ -1,11 +1,12 @@
-import { type FC } from "react";
-import { DigitalTime } from "../components/DigitalTime";
+import type { FC } from "react";
 
-import { Card, CardHeader, CardTitle, CardFooter } from "../components/Card";
+import { Settings2 } from "lucide-react";
+
+import { Button } from "../components/Button";
+import { Card, CardFooter, CardHeader, CardTitle } from "../components/Card";
+import { DigitalTime } from "../components/DigitalTime";
 import { useClock } from "../hooks/useClock";
 import { useSettings } from "../hooks/useSettings";
-import { Button } from "../components/Button";
-import { Settings2 } from "lucide-react";
 
 type ClockProps = {
   onOpenSettings: () => void;
@@ -27,7 +28,7 @@ export const Clock: FC<ClockProps> = ({ onOpenSettings }) => {
           <DigitalTime
             time={currentTime}
             mode="clock"
-            format={"12h"}
+            format="12h"
             includeSeconds={settings.clock.showSeconds}
           />
         </CardTitle>

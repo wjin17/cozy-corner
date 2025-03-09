@@ -1,5 +1,5 @@
 type Time = {
-    s: number;
-    m: number;
-    h: number;
-}
+  s: number;
+  m: number;
+  h: number;
+};
