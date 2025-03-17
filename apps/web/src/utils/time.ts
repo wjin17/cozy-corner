@@ -32,7 +32,7 @@ export function formatTime(props: {
   includeSeconds?: boolean;
 }) {
   const t = sec2time(props.time);
-  const hours = props.format === "12h" ? (t.h % 12 ? t.h : 12) : t.h;
+  const hours = props.format === "12h" ? (t.h % 12 ? t.h % 12 : 12) : t.h;
   const h = hours >= 10 ? hours.toString() : `0${hours}`;
   const m = t.m >= 10 ? t.m.toString() : `0${t.m}`;
   const s = t.s >= 10 ? t.s.toString() : `0${t.s}`;

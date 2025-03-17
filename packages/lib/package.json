@@ -3,9 +3,16 @@
   "type": "module",
   "private": true,
   "exports": {
-    "./common/logger": "./src/common/logger.ts"
+    "./common/*": {
+      "types": "./dist/common/*.d.ts",
+      "import": {
+        "development": "./src/common/*.ts",
+        "default": "./dist/common/*.js"
+      }
+    }
   },
   "scripts": {
+    "build": "tsc",
     "lint": "eslint .",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "typecheck": "tsc --noEmit",

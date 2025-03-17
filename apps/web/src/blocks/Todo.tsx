@@ -55,7 +55,7 @@ export const Todo = () => {
     },
     onSubmit: ({ newTask }) => {
       if (newTask.trim() !== "") {
-        setTasks(prev => [
+        setTasks((prev) => [
           ...prev,
           { id: smolid(), title: newTask, completed: false },
         ]);
@@ -73,27 +73,27 @@ export const Todo = () => {
   }, [tasks, open]);
 
   function handleToggleTask(id: string) {
-    setTasks(prev =>
-      prev.map(task =>
+    setTasks((prev) =>
+      prev.map((task) =>
         id === task.id ? { ...task, completed: !task.completed } : task,
       ),
     );
   }
 
   function handleDeleteTask(id: string) {
-    setTasks(prev => prev.filter(task => task.id !== id));
+    setTasks((prev) => prev.filter((task) => task.id !== id));
   }
 
   return (
     <Card
       className={cn(
-        "mt-auto flex w-full flex-grow flex-col overflow-y-hidden transition-all duration-500 ease-in sm:w-md",
+        "mt-auto mb-40 flex w-full flex-grow flex-col overflow-y-hidden transition-all duration-500 ease-in md:w-md lg:mb-0",
         open ? "max-h-full" : "max-h-22",
       )}
     >
       <button
         type="button"
-        onClick={() => setOpen(prev => !prev)}
+        onClick={() => setOpen((prev) => !prev)}
         className="w-full cursor-pointer"
       >
         <CardHeader>

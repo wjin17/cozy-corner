@@ -1,1 +1,33 @@
- 
+---
+description: ENFORCE proper package structure and usage constraints in the API package
+globs: apps/api/**/*.ts
+---
+
+# API Package Structure and Usage Constraints
+
+<version>1.0.0</version>
+
+## Context
+- When working with code in the API package
+- When deciding where to place code and how it should be used
+
+## Requirements
+- Files under `apps/api/src/dev/` are strictly for development environments only
+- Never import or use development code in production contexts
+- The `createDevServer` function in `dev/index.ts` should only be used to support local development
+- Production server code should use the standard server implementation
+- Any code shared between development and production should be placed outside the `dev/` directory
+
+## Examples
+<example>
+// Correct usage - using dev server in development context:
+// In apps/web/dev.ts
+import { createDevServer } from "@apps/api/dev";
+// ...development setup
+</example>
+
+<example type="invalid">
+// Incorrect usage - importing dev server in production code:
+// In apps/server/main.ts
+import { createDevServer } from "@apps/api/dev"; // ❌ Don't use dev code in production
+</example> 

@@ -28,7 +28,7 @@ export const Clock: FC<ClockProps> = ({ onOpenSettings }) => {
           <DigitalTime
             time={currentTime}
             mode="clock"
-            format="12h"
+            format={settings.clock.format}
             includeSeconds={settings.clock.showSeconds}
           />
         </CardTitle>

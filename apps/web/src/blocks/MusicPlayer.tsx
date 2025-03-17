@@ -1,6 +1,6 @@
 const MusicPlayer = () => {
   return (
-    <div className="absolute right-10 bottom-10">
+    <div className="absolute bottom-24 left-6 md:left-10 lg:right-10 lg:bottom-10 lg:left-auto">
       <iframe
         sandbox="allow-scripts allow-same-origin"
         className="rounded-lg"
@@ -9,8 +9,7 @@ const MusicPlayer = () => {
         height="152"
         allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
         loading="lazy"
-      >
-      </iframe>
+      />
     </div>
   );
 };

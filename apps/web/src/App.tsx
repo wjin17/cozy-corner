@@ -11,7 +11,7 @@ export const App = () => {
       <img
         src={gorlDog}
         alt="Gorl Dog"
-        className="absolute top-[40rem] right-[4rem] h-[44rem] -translate-y-4/5 rounded-xl"
+        className="absolute top-1/2 right-0 h-4/5 w-full -translate-y-1/2 rounded-xl object-cover lg:right-[8rem] lg:w-auto"
       />
       <div className="absolute top-10 left-6 flex h-[calc(100vh-5rem)] w-[calc(100%-3rem)] min-w-xs flex-col gap-8 md:left-10 md:w-[calc(100%-5rem)]">
         <TimeWidget />

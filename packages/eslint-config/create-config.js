@@ -20,6 +20,7 @@ export default function createConfig(options, ...userConfigs) {
         "style/comma-dangle": ["error", "only-multiline"],
         "ts/consistent-type-definitions": ["error", "type"],
         "no-console": ["warn"],
+        "antfu/if-newline": ["off"],
         "antfu/no-top-level-await": ["off"],
         "node/prefer-global/process": ["off"],
         "node/no-process-env": ["error"],

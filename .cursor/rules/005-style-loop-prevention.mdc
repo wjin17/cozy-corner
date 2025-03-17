@@ -1,1 +1,35 @@
- 
+---
+description: PRIORITIZE functional changes over style issues when implementing solutions
+globs: **/*.{js,jsx,ts,tsx,py,rb,go,rs,java,c,cpp,cs}
+---
+
+# Prevent Style Fixation Loops
+
+<version>1.0.0</version>
+
+## Context
+- When modifying or reviewing code
+- When multiple edit attempts are being made to the same file
+- When changes focus on formatting rather than functionality
+
+## Requirements
+- Prioritize functional correctness over stylistic preferences
+- Limit to 1 attempt for purely stylistic changes that don't affect functionality
+- If a style issue doesn't cause runtime errors or warnings, consider it low priority
+- Do not get caught in loops attempting to change code style when the code works correctly
+- Flag repeated edit attempts on the same section as a potential style loop
+
+## Examples
+<example>
+// Identifying a style loop:
+// After two failed attempts to change parentheses around a return statement:
+
+// Instead of trying again:
+"This is a stylistic choice that doesn't affect functionality. The code will work with or without these parentheses, so I'm proceeding with the functional changes instead."
+</example>
+
+<example type="invalid">
+// Getting caught in a style loop:
+"Let me try again to remove those parentheses..." (after 3+ attempts)
+"I'm still having trouble with the formatting..." (continuing to focus on a non-functional issue)
+</example> 

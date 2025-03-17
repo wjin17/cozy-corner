@@ -32,8 +32,7 @@ export const TimerConfig: FC<TimeInputProps> = ({ className }) => {
         const timeF = sec2time(prev);
         timeF[type] = timeF[type] + 1;
         const nextSec = time2sec(timeF);
-        if (nextSec < 86400)
-          return nextSec;
+        if (nextSec < 86400) return nextSec;
         return 0;
       });
     }
@@ -45,8 +44,7 @@ export const TimerConfig: FC<TimeInputProps> = ({ className }) => {
         const timeF = sec2time(prev);
         timeF[type] = timeF[type] - 1;
         const nextSec = time2sec(timeF);
-        if (nextSec > 0)
-          return nextSec;
+        if (nextSec > 0) return nextSec;
         return 86400;
       });
     }
@@ -60,33 +58,33 @@ export const TimerConfig: FC<TimeInputProps> = ({ className }) => {
 
   return (
     <div className="flex flex-col gap-2">
-      <div className="grid grid-cols-3 grid-rows-4 gap-x-4 text-center">
+      <div className="grid grid-cols-3 grid-rows-[auto-auto-auto-auto] gap-x-4 text-center">
         <button
           type="button"
-          className="m-auto"
+          className="m-auto cursor-pointer"
           onClick={() => handleIncrementTime("h")}
         >
-          <ChevronUp />
+          <ChevronUp strokeWidth={1} />
         </button>
         <button
           type="button"
-          className="m-auto"
+          className="m-auto cursor-pointer"
           onClick={() => handleIncrementTime("m")}
         >
-          <ChevronUp />
+          <ChevronUp strokeWidth={1} />
         </button>
         <button
           type="button"
-          className="m-auto"
+          className="m-auto cursor-pointer"
           onClick={() => handleIncrementTime("s")}
         >
-          <ChevronUp />
+          <ChevronUp strokeWidth={1} />
         </button>
         <input
           id="hours"
           className={cn("h-8 w-8 rounded-md bg-white text-center", className)}
           placeholder=" "
-          onChange={e => handleUpdateTime(e.target.value, "h")}
+          onChange={(e) => handleUpdateTime(e.target.value, "h")}
           value={String(newHours)}
           onFocus={() => (focusRef.current = "h")}
           onBlur={() => (focusRef.current = null)}
@@ -95,7 +93,7 @@ export const TimerConfig: FC<TimeInputProps> = ({ className }) => {
           id="minutes"
           className={cn("w-8 rounded-md bg-white text-center", className)}
           placeholder=" "
-          onChange={e => handleUpdateTime(e.target.value, "m")}
+          onChange={(e) => handleUpdateTime(e.target.value, "m")}
           value={String(newMinutes)}
           onFocus={() => (focusRef.current = "m")}
           onBlur={() => (focusRef.current = null)}
@@ -104,7 +102,7 @@ export const TimerConfig: FC<TimeInputProps> = ({ className }) => {
           id="seconds"
           className={cn("w-8 rounded-md bg-white text-center", className)}
           placeholder=" "
-          onChange={e => handleUpdateTime(e.target.value, "s")}
+          onChange={(e) => handleUpdateTime(e.target.value, "s")}
           value={String(newSeconds)}
           onFocus={() => (focusRef.current = "s")}
           onBlur={() => (focusRef.current = null)}
@@ -114,24 +112,24 @@ export const TimerConfig: FC<TimeInputProps> = ({ className }) => {
         <label htmlFor="seconds">sec</label>
         <button
           type="button"
-          className="m-auto"
+          className="m-auto cursor-pointer"
           onClick={() => handleDecrementTime("h")}
         >
-          <ChevronDown />
+          <ChevronDown strokeWidth={1} />
         </button>
         <button
           type="button"
-          className="m-auto"
+          className="m-auto cursor-pointer"
           onClick={() => handleDecrementTime("m")}
         >
-          <ChevronDown />
+          <ChevronDown strokeWidth={1} />
         </button>
         <button
           type="button"
-          className="m-auto"
+          className="m-auto cursor-pointer"
           onClick={() => handleDecrementTime("s")}
         >
-          <ChevronDown />
+          <ChevronDown strokeWidth={1} />
         </button>
       </div>
       <Button
