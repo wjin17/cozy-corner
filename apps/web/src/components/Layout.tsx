@@ -5,7 +5,7 @@ import { SettingsProvider } from "../hooks/useSettings";
 export const Layout: FC<PropsWithChildren> = ({ children }) => {
   return (
     <SettingsProvider>
-      <div className="bg-background h-full min-h-screen">{children}</div>
+      <div className="h-full min-h-screen">{children}</div>
     </SettingsProvider>
   );
 };

@@ -88,7 +88,7 @@ export const Todo = () => {
     <Card
       className={cn(
         "mt-auto mb-40 flex w-full flex-grow flex-col overflow-y-hidden transition-all duration-500 ease-in md:w-md lg:mb-0",
-        open ? "max-h-full" : "max-h-22",
+        open ? "max-h-full" : "max-h-20 lg:max-h-22",
       )}
     >
       <button
