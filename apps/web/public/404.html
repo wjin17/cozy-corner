@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Redirecting...</title>
+    <script>
+      // Single Page Apps for GitHub Pages
+      // https://github.com/rafgraph/spa-github-pages
+      // This script takes the current URL and converts the path and query
+      // parameters into a route that the single page app expects.
+      (function () {
+        const pathname = window.location.pathname;
+        const segmentCount = 1; // Adjust this based on your repo name (e.g., /cozy-corner/ is 1 segment)
+        const redirectUrl =
+          window.location.protocol
+          + "//"
+          + window.location.hostname
+          + (window.location.port ? ":" + window.location.port : "")
+          + pathname
+            .split("/")
+            .slice(0, 1 + segmentCount)
+            .join("/")
+          + "/?p=/"
+          + pathname
+            .slice(1)
+            .split("/")
+            .slice(segmentCount)
+            .join("/")
+            .replace(/&/g, "~and~")
+          + (window.location.search
+            ? "&q=" + window.location.search.slice(1).replace(/&/g, "~and~")
+            : "")
+          + window.location.hash;
+        window.location.replace(redirectUrl);
+      })();
+    </script>
+  </head>
+  <body>
+    Redirecting...
+  </body>
+</html>

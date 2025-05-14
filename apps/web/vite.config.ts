@@ -9,6 +9,9 @@ export default defineConfig({
   server: {
     port: 3000,
   },
+  // Base path for GitHub Pages deployment
+  // Change to '/' if deploying to custom domain
+  base: "/cozy-corner/",
   plugins: [
     react(),
     tailwindcss(),
